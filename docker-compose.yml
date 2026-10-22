@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  telegram-bot:
+    build: .
+    container_name: silent_killer_bot
+    restart: unless-stopped
+    ports:
+      - "10000:10000"
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - OWNER_ID=${OWNER_ID:-6534828985}
+      - OWNER_USERNAME=${OWNER_USERNAME:-Silent_killer_un}
+      - PORT=10000
+    volumes:
+      - ./data:/app/data
+      - ./hosted_bots:/app/hosted_bots
+      - ./users.json:/app/users.json
+      - ./error.log:/app/error.log
